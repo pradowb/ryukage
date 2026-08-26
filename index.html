@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="RyuKage — estúdio de sites. Design com intenção, desenvolvimento e identidade digital.">
 <title>RyuKage — Estúdio de Sites</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,15 +186,6 @@
     width:100%; height:1px; background:rgba(201,205,214,.15);
     margin:6px 0 4px;
   }
-  .stats{ display:flex; gap:30px; }
-  .stat{ display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
-  .stat .num{
-    font-family:var(--font-display); font-weight:680; font-size:28px; color:var(--silver);
-  }
-  .stat .label{
-    font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
-    color:var(--silver-dim); white-space:nowrap;
-  }
 
   /* ---------- responsive ---------- */
   @media (max-width:900px){
@@ -201,7 +193,6 @@
     .col-left, .col-right{ align-items:center; text-align:center; }
     .col-left .list, .col-left .quote{ max-width:40ch; }
     .col-right .bio{ max-width:40ch; }
-    .stats{ justify-content:center; }
     .topbar{ justify-content:center; text-align:center; }
   }
 
@@ -301,7 +292,7 @@
 
   /* ---------- process + featured work ---------- */
   .studio{
-    position:relative;
+    position:relative; z-index:2;
     background:transparent;
     padding:clamp(16px,2.5vw,32px) 0 clamp(24px,3vw,48px);
   }
@@ -569,9 +560,9 @@
     max-width:1400px; margin:0 auto;
     padding:0 clamp(20px,4vw,56px);
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr auto 1fr;
     gap:clamp(28px,4vw,56px);
-    align-items:start;
+    align-items:center;
   }
   .foot-left .eyebrow{ display:block; color:var(--silver-dim); margin-bottom:10px; }
   .foot-title{
@@ -591,6 +582,32 @@
     color:var(--stone); text-decoration:none;
   }
   .foot-list a:hover{ color:var(--cream); }
+  .foot-cta{
+    display:flex; justify-content:center; align-items:center;
+  }
+  .foot-wa{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-mono); font-size:11px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--cream);
+    background:var(--wine-bright);
+    border:1px solid var(--wine-bright);
+    border-radius:999px;
+    padding:12px 20px;
+    text-decoration:none;
+    box-shadow:0 0 18px rgba(178,49,64,.32);
+    transition:background .25s ease, box-shadow .25s ease, color .25s ease;
+  }
+  .foot-wa svg{
+    width:15px; height:15px; flex-shrink:0;
+    fill:currentColor;
+  }
+  .foot-wa:hover{
+    background:var(--wine);
+    border-color:var(--wine);
+    color:var(--cream);
+    box-shadow:0 0 22px rgba(178,49,64,.48);
+  }
   .foot-right{
     display:flex; flex-direction:column; align-items:flex-end; text-align:right;
     padding-top:2px;
@@ -619,7 +636,8 @@
 
   @media (max-width:900px){
     .foot-grid{ grid-template-columns:1fr; gap:28px; }
-    .foot-right{ align-items:flex-start; text-align:left; }
+    .foot-cta{ order:2; justify-content:flex-start; }
+    .foot-right{ order:3; align-items:flex-start; text-align:left; }
     .foot-title{ font-size:24px; }
   }
 </style>
@@ -628,13 +646,13 @@
   <canvas class="bg-stars" aria-hidden="true"></canvas>
   <canvas id="scene" aria-hidden="true"></canvas>
 
+  <div class="page">
   <div class="hero">
-  <video class="bg-video" poster="metal-human/metal-human.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+  <video class="bg-video" poster="metal-human/metal-human.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src="metal-human/metal-human.mp4" type="video/mp4">
   </video>
   <div class="bg-scrim" aria-hidden="true"></div>
 
-  <div class="page">
     <header class="topbar">
       <span class="eyebrow">Estúdio de sites</span>
       <span class="status-dot" aria-hidden="true"></span>
@@ -646,17 +664,16 @@
       <div class="col-left">
         <span class="eyebrow">Sites / Marca / Motion</span>
         <p class="list">Design de sites / Identidade visual / Motion &amp; interação</p>
-        <p class="quote">"Acredito que um site bom não é decorado — é construído com intenção, do primeiro pixel ao deploy."</p>
+        <p class="quote">"Um site bom não é decorado — é construído com intenção, do primeiro pixel ao deploy."</p>
         <span class="sig">R.</span>
       </div>
 
       <div class="col-right">
         <span class="name">RyuKage</span>
         <span class="subtitle">Estúdio de sites</span>
-        <p class="bio">Sou eu por trás da RyuKage — desenho e construo sites autorais, pensados pra carregar identidade, não só páginas.</p>
+        <p class="bio">A RyuKage desenha e constrói sites autorais, pensados para carregar identidade, não só páginas.</p>
       </div>
     </div>
-  </div>
   </div>
 
   <section class="services" id="services">
@@ -778,22 +795,22 @@
       <div class="works" id="projetos">
         <div class="works-head">
           <span class="eyebrow">Trabalhos em destaque</span>
-          <a class="works-more" href="#projetos" data-cursor="hot">Ver mais projetos →</a>
+          <a class="works-more" href="#contato" data-cursor="hot">Pedir um projeto →</a>
         </div>
 
         <div class="stack-wrap">
           <div class="stack" data-cursor="hot" aria-roledescription="carrossel">
             <article class="stack-card stack-card--0" data-name="Projeto Aurora" data-cat="Identidade &amp; Site">
-              <span class="stack-badge">placeholder</span>
+              <span class="stack-badge">em breve</span>
             </article>
             <article class="stack-card stack-card--1" data-name="Projeto Onda" data-cat="Web App">
-              <span class="stack-badge">placeholder</span>
+              <span class="stack-badge">em breve</span>
             </article>
             <article class="stack-card stack-card--2" data-name="Projeto Cinza" data-cat="E-commerce">
-              <span class="stack-badge">placeholder</span>
+              <span class="stack-badge">em breve</span>
             </article>
             <article class="stack-card stack-card--3" data-name="Projeto Verbo" data-cat="Landing Page">
-              <span class="stack-badge">placeholder</span>
+              <span class="stack-badge">em breve</span>
             </article>
           </div>
         </div>
@@ -826,7 +843,7 @@
           </ul>
           <blockquote class="quote-card">
             <p>“Simplicidade é resultado de profundidade. Criamos produtos digitais onde estratégia, design e tecnologia se encontram para transformar complexidade em experiências claras e eficientes.”</p>
-            <cite>— Placeholder</cite>
+            <cite>— RyuKage</cite>
           </blockquote>
         </div>
       </div>
@@ -842,8 +859,14 @@
         <ul class="foot-list">
           <li><a href="mailto:contacto@ryukage.com" data-cursor="hot">contacto@ryukage.com</a></li>
           <li>Portugal</li>
-          <li>ryukage.studio</li>
+          <li><a href="https://ryukage.studio" data-cursor="hot">ryukage.studio</a></li>
         </ul>
+      </div>
+      <div class="foot-cta">
+        <a class="foot-wa" href="https://wa.me/351932196127" target="_blank" rel="noopener noreferrer" data-cursor="hot" aria-label="Abrir conversa no WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.84c0 1.98.58 3.82 1.58 5.38L2 22l4.96-1.6a9.86 9.86 0 0 0 5.08 1.4h.01c5.46 0 9.89-4.4 9.89-9.84C21.94 6.4 17.5 2 12.04 2zm5.76 14.17c-.24.68-1.4 1.24-1.93 1.32-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.26-4.79-4.2-4.93-4.39-.14-.2-1.16-1.54-1.16-2.94 0-1.4.73-2.09.99-2.38.26-.29.57-.36.76-.36h.55c.18 0 .42-.07.65.5.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.2-.15.31-.29.48-.14.16-.3.36-.43.49-.14.14-.29.29-.12.56.16.28.73 1.2 1.56 1.94 1.08.96 1.98 1.26 2.26 1.4.28.14.44.12.6-.07.17-.2.7-.81.89-1.09.19-.28.38-.23.64-.14.26.1 1.66.78 1.95.92.28.14.47.21.54.33.07.12.07.69-.17 1.37z"/></svg>
+          WhatsApp
+        </a>
       </div>
       <div class="foot-right">
         <p class="foot-tagline">Desenhando experiências.<br>Construindo marcas.</p>
@@ -855,6 +878,7 @@
       <span>Estúdio de sites — Portugal</span>
     </div>
   </footer>
+  </div>
 
   <script>
   (function(){
