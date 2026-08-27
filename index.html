@@ -100,13 +100,13 @@
     z-index:1;
   }
   .bg-stars{
-    position:fixed; inset:0; z-index:3;
+    position:fixed; inset:0; z-index:0;
     width:100%; height:100%;
     pointer-events:none;
     mix-blend-mode:screen;
   }
   #scene{
-    position:fixed; inset:0; z-index:3;
+    position:fixed; inset:0; z-index:0;
     width:100vw; height:100vh;
     display:block;
     pointer-events:none;
@@ -685,15 +685,14 @@
 </style>
 </head>
 <body>
-  <canvas class="bg-stars" aria-hidden="true"></canvas>
-  <canvas id="scene" aria-hidden="true"></canvas>
-
   <div class="page">
   <div class="hero">
   <video class="bg-video" poster="metal-human/metal-human.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
     <source src="metal-human/metal-human.mp4" type="video/mp4">
   </video>
   <div class="bg-scrim" aria-hidden="true"></div>
+  <canvas class="bg-stars" aria-hidden="true"></canvas>
+  <canvas id="scene" aria-hidden="true"></canvas>
 
     <header class="topbar">
       <span class="eyebrow">Estúdio de sites</span>
