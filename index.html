@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="RyuKage — estúdio de sites. Design com intenção, desenvolvimento e identidade digital.">
 <title>RyuKage — Estúdio de Sites</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2308080A'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23B23140' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,340;0,480;0,600;0,680;1,340;1,480&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -388,10 +389,39 @@
     aspect-ratio:16/11;
   }
   .stack-card{
+    display:block;
     position:absolute; inset:0;
     overflow:hidden;
     box-shadow:inset 0 0 0 1px rgba(201,205,214,.08);
     will-change:transform, opacity;
+    text-decoration:none;
+    color:inherit;
+  }
+  .stack-card[href]:hover{
+    box-shadow:inset 0 0 0 1px rgba(201,205,214,.28);
+  }
+  .stack-cover{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:contain;
+    object-position:center;
+    filter:saturate(.9) brightness(.9);
+    transition:filter .6s ease;
+    transform:scale(1);
+  }
+  .stack-card[href]:hover .stack-cover{
+    filter:saturate(1) brightness(.82);
+    animation:stackKenBurns 6s ease-in-out infinite alternate;
+  }
+  @keyframes stackKenBurns{
+    0%{ transform:scale(1) translate(0, 0); }
+    100%{ transform:scale(1.09) translate(-1.6%, -1.2%); }
+  }
+  .stack-card[href]::after{
+    content:'';
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(8,8,10,0) 55%, rgba(8,8,10,.85) 100%);
+    pointer-events:none;
   }
   .stack-card--0{
     background:
@@ -408,17 +438,23 @@
       radial-gradient(100% 80% at 40% 100%, rgba(80,78,74,.28) 0%, transparent 50%),
       linear-gradient(148deg, #161618 0%, #0c0c0e 55%, #08080A 100%);
   }
-  .stack-card--3{
-    background:
-      radial-gradient(90% 70% at 10% 80%, rgba(178,49,64,.22) 0%, transparent 48%),
-      linear-gradient(140deg, #181014 0%, #0b090b 50%, #0e0c10 100%);
-  }
   .stack-badge{
-    position:absolute; top:14px; right:14px;
+    position:absolute; top:14px; right:14px; z-index:2;
     font-family:var(--font-mono); font-size:9px; letter-spacing:.14em;
     text-transform:uppercase; color:var(--silver-dim);
     border:1px solid rgba(201,205,214,.28);
     padding:4px 8px;
+    background:rgba(8,8,10,.55);
+    backdrop-filter:blur(2px);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .stack-card[href] .stack-badge{
+    color:var(--cream);
+    border-color:rgba(178,49,64,.5);
+  }
+  .stack-card[href]:hover .stack-badge{
+    color:var(--wine-bright);
+    border-color:var(--wine-bright);
   }
 
   .works-foot{
@@ -806,31 +842,30 @@
 
         <div class="stack-wrap">
           <div class="stack" data-cursor="hot" aria-roledescription="carrossel">
-            <article class="stack-card stack-card--0" data-name="Projeto Aurora" data-cat="Identidade &amp; Site">
-              <span class="stack-badge">em breve</span>
-            </article>
-            <article class="stack-card stack-card--1" data-name="Projeto Onda" data-cat="Web App">
-              <span class="stack-badge">em breve</span>
-            </article>
-            <article class="stack-card stack-card--2" data-name="Projeto Cinza" data-cat="E-commerce">
-              <span class="stack-badge">em breve</span>
-            </article>
-            <article class="stack-card stack-card--3" data-name="Projeto Verbo" data-cat="Landing Page">
-              <span class="stack-badge">em breve</span>
-            </article>
+            <a class="stack-card stack-card--0" data-name="Barbershop" data-cat="Web App" href="https://barbershop-pied.vercel.app/" target="_blank" rel="noopener noreferrer" data-cursor="hot">
+              <img class="stack-cover" src="covers/barbershop.jpg" alt="Captura do projeto Barbershop" loading="lazy">
+              <span class="stack-badge">ver projeto →</span>
+            </a>
+            <a class="stack-card stack-card--1" data-name="A Cabana" data-cat="Website" href="https://cabana-gamma.vercel.app/" target="_blank" rel="noopener noreferrer" data-cursor="hot">
+              <img class="stack-cover" src="covers/cabana.jpg" alt="Captura do projeto A Cabana" loading="lazy">
+              <span class="stack-badge">ver projeto →</span>
+            </a>
+            <a class="stack-card stack-card--2" data-name="SelfCare" data-cat="Website" href="https://webface-one.vercel.app/" target="_blank" rel="noopener noreferrer" data-cursor="hot">
+              <img class="stack-cover" src="covers/selfcare.jpg" alt="Captura do projeto SelfCare" loading="lazy">
+              <span class="stack-badge">ver projeto →</span>
+            </a>
           </div>
         </div>
 
         <div class="works-foot">
           <div class="works-caption" aria-live="polite">
-            <span class="works-cat">Identidade &amp; Site</span>
-            <span class="works-name">Projeto Aurora</span>
+            <span class="works-cat">Web App</span>
+            <span class="works-name">Barbershop</span>
           </div>
           <div class="works-dots" role="tablist" aria-label="Projetos em destaque">
-            <button class="works-dot is-on" type="button" data-cursor="hot" aria-label="Projeto Aurora" aria-selected="true"></button>
-            <button class="works-dot" type="button" data-cursor="hot" aria-label="Projeto Onda" aria-selected="false"></button>
-            <button class="works-dot" type="button" data-cursor="hot" aria-label="Projeto Cinza" aria-selected="false"></button>
-            <button class="works-dot" type="button" data-cursor="hot" aria-label="Projeto Verbo" aria-selected="false"></button>
+            <button class="works-dot is-on" type="button" data-cursor="hot" aria-label="Barbershop" aria-selected="true"></button>
+            <button class="works-dot" type="button" data-cursor="hot" aria-label="A Cabana" aria-selected="false"></button>
+            <button class="works-dot" type="button" data-cursor="hot" aria-label="SelfCare" aria-selected="false"></button>
           </div>
         </div>
 
@@ -1346,6 +1381,10 @@
 
     dots.forEach(function(dot, i){
       dot.addEventListener('click', function(){ go(i); });
+    });
+
+    cards.forEach(function(card, i){
+      card.addEventListener('mouseenter', function(){ if(i !== active) go(i); });
     });
 
     compact.addEventListener('change', function(){ layout(true); });
